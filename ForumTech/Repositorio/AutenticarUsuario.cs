@@ -47,7 +47,7 @@ namespace ForumTech.Repositorio
             }
         }
 
-        public static Boolean verificarSessaoAdm()
+        public static Boolean verificarSessaoUsuarioAdm()
         {
             usuario usuarioLogado = (usuario) HttpContext.Current.Session["usuario"];
 

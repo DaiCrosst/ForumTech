@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ForumTech.Models.topico_forum>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastro de tópicos</h2>
+<div class="form-group">
+    @Html.ActionLink("Cadastrar", "Create", null, null, new {@class = "btn btn-primary"})
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => item.nome)</td>
+            <td>@Html.DisplayFor(model => item.descricao)</td>
+            <td>
+                <span class="badge">@item.postagem.Count</span>
+                @Html.ActionLink("Visualizar Fórum","Index","Postagem", new {id_topico_forum = item.id_topico_forum},null)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
