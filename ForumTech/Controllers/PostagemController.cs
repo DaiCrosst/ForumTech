@@ -29,11 +29,11 @@ namespace ForumTech.Controllers
             ViewBag.id_usuario = new SelectList(db.usuario, "id_usuario", "nome");
             return View();
         }
-
+        //id_postagem, id_topico_forum, id_usuario,id_resposta,mensagem,data_publicacao
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "id_postagem, id_topico_forum, id_usuario,id_resposta,mensagem,data_publicacao")] postagem
+            [Bind(Include = "id_topico_forum, id_usuario,mensagem,data_publicacao")] postagem
                 postagem)
         {
             if (ModelState.IsValid)
@@ -41,6 +41,7 @@ namespace ForumTech.Controllers
                 usuario usuarioLogado = AutenticarUsuario.retornarUsuarioDaSessao();
 
                 postagem.id_postagem = usuarioLogado.id_usuario;
+                postagem.id_usuario = usuarioLogado.id_usuario;
                 postagem.data_publicacao = DateTime.Now;
 
                 db.postagem.Add(postagem);
